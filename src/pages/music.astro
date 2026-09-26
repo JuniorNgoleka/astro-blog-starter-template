@@ -101,4 +101,37 @@ audio{width:100%;margin:10px 0}
 <!-- SONG 7 -->
 <div class="song">
 <div><b>Fire Mountain Welcome</b></div>
-<div class="plays">👁 7.2k plays
+<!-- SONG 7 -->
+<div class="song">
+<div><b>Fire Mountain Welcome</b></div>
+<div class="plays">👁 7.2k plays</div>
+<audio controls><source src=""></audio>
+<br><button class="btn-dl">Download MP3</button>
+<br><button class="btn-like" onclick="likeThis(this)">❤️ <span>0</span> Likes</button>
+<div class="comment-row"><input id="c7" placeholder="Add a comment..."><button class="btn-post" onclick="postThis('c7','l7')">Post</button></div>
+<div id="l7"></div>
+</div>
+
+<script>
+function likeThis(btn){
+ let span=btn.querySelector('span');
+ let n=parseInt(span.innerText)+1;
+ span.innerText=n;
+ btn.classList.add('liked');
+}
+function postThis(inputId,listId){
+ let input=document.getElementById(inputId);
+ let list=document.getElementById(listId);
+ if(!input.value.trim()) return;
+ let div=document.createElement('div');
+ div.className='comment-item';
+ div.style.cssText='background:#1e1e1e;padding:8px 12px;border-radius:12px;margin-top:8px;font-size:14px';
+ div.innerHTML='<b style="color:gold">You:</b> '+input.value;
+ list.prepend(div);
+ input.value='';
+}
+</script>
+
+<p style="text-align:center;color:gold;margin-top:30px">© 2026 Prophet Junior Ngoleka - Kitwe, Zambia</p>
+</body>
+</html>
