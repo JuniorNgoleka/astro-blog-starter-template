@@ -8,11 +8,18 @@
 <style>
 body{background:#111; color:white; font-family:Arial; margin:0; padding:15px;}
 h1,h2{text-align:center; color:gold;}
-.song-card{background:#222; padding:15px; margin:10px 0; border-radius:10px;}
+.song-card{background:#222; padding:15px; margin:15px 0; border-radius:10px;}
 .song-title{font-weight:bold; font-size:18px; margin-bottom:5px;}
-.btn{background:gold; color:black; padding:8px 15px; text-decoration:none; border-radius:5px; display:inline-block; margin-top:10px; font-weight:bold;}
+.btn{background:gold; color:black; padding:8px 15px; text-decoration:none; border-radius:5px; display:inline-block; margin:5px 5px 5px 0; font-weight:bold; cursor:pointer; border:none;}
 .btn:hover{background:#ffcc00;}
+.btn-like{background:#333; color:white; border:1px solid #555;}
+.btn-like.liked{background:red; color:white; border-color:red;}
 audio{width:100%; margin-top:10px;}
+.comment-box{margin-top:15px; background:#1a1a1a; padding:10px; border-radius:8px;}
+.comment-input{width:70%; padding:8px; border-radius:5px; border:none; background:#333; color:white;}
+.comment-list{margin-top:10px; font-size:14px;}
+.comment{ background:#333; padding:6px 10px; border-radius:5px; margin:5px 0; }
+.likes{color:#aaa; font-size:13px; margin-left:5px;}
 </style>
 </head>
 <body>
@@ -21,57 +28,123 @@ audio{width:100%; margin-top:10px;}
 
 <h2>🔥 NEW RELEASED</h2>
 
-<div class="song-card" style="border: 2px solid gold;">
+<div class="song-card" style="border: 2px solid gold;" data-song="chimayaka">
 <div class="song-title">Chimayaka <span style="background:gold; color:black; font-size:10px; padding:2px 5px; border-radius:3px;">NEW</span></div>
 <div style="font-size:12px; color:#aaa;">👁️ 1.2k plays • 3 days ago</div>
-<audio controls><source src="/Chimayaka-Jr-Ngoleka.mp3" type="audio/mpeg"></audio>
+<audio controls><source src="/Chimayaka-Jr-Ngoleka.mp3" type="audio/mpeg"></audio><br>
 <a class="btn" href="/Chimayaka-Jr-Ngoleka.mp3" download>Download MP3</a>
+<button class="btn btn-like" onclick="likeSong(this)">❤️ Like <span class="likes">12</span></button>
+<div class="comment-box">
+<input class="comment-input" placeholder="Add a comment..." onkeypress="if(event.key==='Enter') addComment(this)">
+<button class="btn" style="padding:6px 10px;" onclick="addComment(this.previousElementSibling)">Post</button>
+<div class="comment-list"></div>
+</div>
 </div>
 
-<div class="song-card" style="border: 2px solid gold;">
+<div class="song-card" style="border: 2px solid gold;" data-song="ndiwe">
 <div class="song-title">Ndiwe Wokongola <span style="background:gold; color:black; font-size:10px; padding:2px 5px; border-radius:3px;">NEW</span></div>
 <div style="font-size:12px; color:#aaa;">👁️ 2.5k plays • 1 week ago</div>
-<audio controls><source src="/Ndiwe-Wokongola.mp3" type="audio/mpeg"></audio>
+<audio controls><source src="/Ndiwe-Wokongola.mp3" type="audio/mpeg"></audio><br>
 <a class="btn" href="/Ndiwe-Wokongola.mp3" download>Download MP3</a>
+<button class="btn btn-like" onclick="likeSong(this)">❤️ Like <span class="likes">34</span></button>
+<div class="comment-box">
+<input class="comment-input" placeholder="Add a comment..." onkeypress="if(event.key==='Enter') addComment(this)">
+<button class="btn" style="padding:6px 10px;" onclick="addComment(this.previousElementSibling)">Post</button>
+<div class="comment-list"></div>
+</div>
 </div>
 
-<div class="song-card" style="border: 2px solid gold;">
+<div class="song-card" style="border: 2px solid gold;" data-song="barbra">
 <div class="song-title">Happy Birthday Barbra</div>
-<p>Apostle Martin - Junior Ngoleka</p>
+<p style="font-size:12px; color:#ccc;">Apostle Martin - Junior Ngoleka</p>
 <div style="font-size:12px; color:#aaa;">👁️ 890 plays • 2 weeks ago</div>
-<audio controls><source src="/Happy-birthday-Barbra.mp3" type="audio/mpeg"></audio>
+<audio controls><source src="/Happy-birthday-Barbra.mp3" type="audio/mpeg"></audio><br>
 <a class="btn" href="/Happy-birthday-Barbra.mp3" download>Download MP3</a>
+<button class="btn btn-like" onclick="likeSong(this)">❤️ Like <span class="likes">8</span></button>
+<div class="comment-box">
+<input class="comment-input" placeholder="Add a comment..." onkeypress="if(event.key==='Enter') addComment(this)">
+<button class="btn" style="padding:6px 10px;" onclick="addComment(this.previousElementSibling)">Post</button>
+<div class="comment-list"></div>
+</div>
 </div>
 
 <h2>⭐ TOP SONGS • MOST PLAYED</h2>
 
-<div class="song-card" style="border: 2px solid red;">
+<div class="song-card" style="border: 2px solid red;" data-song="mwelesa">
 <div class="song-title">Mwe Lesa <span style="background:red; color:white; font-size:10px; padding:2px 5px; border-radius:3px;">MOST PLAYED</span></div>
 <div style="font-size:12px; color:#aaa;">👁️ 15.3k plays • ❤️ 1.1k likes</div>
-<audio controls><source src="/Mwe-Lesa.mp3" type="audio/mpeg"></audio>
+<audio controls><source src="/Mwe-Lesa.mp3" type="audio/mpeg"></audio><br>
 <a class="btn" href="/Mwe-Lesa.mp3" download>Download MP3</a>
+<button class="btn btn-like" onclick="likeSong(this)">❤️ Like <span class="likes">1100</span></button>
+<div class="comment-box">
+<input class="comment-input" placeholder="Add a comment..." onkeypress="if(event.key==='Enter') addComment(this)">
+<button class="btn" style="padding:6px 10px;" onclick="addComment(this.previousElementSibling)">Post</button>
+<div class="comment-list"><div class="comment">🔥 Powerful song Apostle!</div><div class="comment">Blessed me so much 🙏</div></div>
+</div>
 </div>
 
-<div class="song-card">
+<div class="song-card" data-song="bow">
 <div class="song-title">Bow to You Alone</div>
 <div style="font-size:12px; color:#aaa;">👁️ 12.1k plays</div>
-<audio controls><source src="/Bow-to-You-Alone.mp3" type="audio/mpeg"></audio>
+<audio controls><source src="/Bow-to-You-Alone.mp3" type="audio/mpeg"></audio><br>
 <a class="btn" href="/Bow-to-You-Alone.mp3" download>Download MP3</a>
+<button class="btn btn-like" onclick="likeSong(this)">❤️ Like <span class="likes">520</span></button>
+<div class="comment-box">
+<input class="comment-input" placeholder="Add a comment..." onkeypress="if(event.key==='Enter') addComment(this)">
+<button class="btn" style="padding:6px 10px;" onclick="addComment(this.previousElementSibling)">Post</button>
+<div class="comment-list"></div>
+</div>
 </div>
 
-<div class="song-card">
+<div class="song-card" data-song="fmd">
 <div class="song-title">FMD</div>
 <div style="font-size:12px; color:#aaa;">👁️ 9.4k plays</div>
-<audio controls><source src="/FMD.mp3" type="audio/mpeg"></audio>
+<audio controls><source src="/FMD.mp3" type="audio/mpeg"></audio><br>
 <a class="btn" href="/FMD.mp3" download>Download MP3</a>
+<button class="btn btn-like" onclick="likeSong(this)">❤️ Like <span class="likes">340</span></button>
+<div class="comment-box">
+<input class="comment-input" placeholder="Add a comment..." onkeypress="if(event.key==='Enter') addComment(this)">
+<button class="btn" style="padding:6px 10px;" onclick="addComment(this.previousElementSibling)">Post</button>
+<div class="comment-list"></div>
+</div>
 </div>
 
-<div class="song-card">
+<div class="song-card" data-song="fire">
 <div class="song-title">Fire Mountain Welcome</div>
 <div style="font-size:12px; color:#aaa;">👁️ 7.2k plays</div>
-<audio controls><source src="/Fire-Mountain-Welcome.mp3" type="audio/mpeg"></audio>
+<audio controls><source src="/Fire-Mountain-Welcome.mp3" type="audio/mpeg"></audio><br>
 <a class="btn" href="/Fire-Mountain-Welcome.mp3" download>Download MP3</a>
+<button class="btn btn-like" onclick="likeSong(this)">❤️ Like <span class="likes">210</span></button>
+<div class="comment-box">
+<input class="comment-input" placeholder="Add a comment..." onkeypress="if(event.key==='Enter') addComment(this)">
+<button class="btn" style="padding:6px 10px;" onclick="addComment(this.previousElementSibling)">Post</button>
+<div class="comment-list"></div>
+</div>
 </div>
 
-</body>
-</html>
+<script>
+function likeSong(btn){
+  const span = btn.querySelector('.likes');
+  let count = parseInt(span.textContent);
+  if(btn.classList.contains('liked')){
+    count--; btn.classList.remove('liked');
+  } else {
+    count++; btn.classList.add('liked');
+    btn.innerHTML = '❤️ Liked <span class="likes">'+count+'</span>';
+    setTimeout(()=>{btn.innerHTML = '❤️ Liked <span class="likes">'+count+'</span>';},0);
+  }
+  span.textContent = count;
+  // Save to local storage
+  const song = btn.closest('.song-card').dataset.song;
+  localStorage.setItem('like_'+song, count);
+  localStorage.setItem('liked_'+song, btn.classList.contains('liked'));
+}
+function addComment(input){
+  if(!input.value.trim()) return;
+  const list = input.parentElement.querySelector('.comment-list');
+  const div = document.createElement('div');
+  div.className='comment';
+  div.textContent = input.value;
+  list.appendChild(div);
+  input.value='';
+  // Save comments
