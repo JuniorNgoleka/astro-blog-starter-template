@@ -1,137 +1,474 @@
  ---
+
 ---
-<html>
+
+<html lang="en">
 <head>
-<title>JN Music - Junior Ngoleka</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-body{background:#000;color:#fff;font-family:Arial;padding:15px;margin:0}
-.logo{width:120px;height:120px;margin:20px auto;background:radial-gradient(circle,#222,#000);border:3px solid gold;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:50px;font-weight:bold;color:gold;text-align:center;box-shadow:0 0 20px gold}
-.title{color:gold;text-align:center;font-size:24px;font-weight:bold;margin:15px 0}
-.song{border:2px solid gold;border-radius:15px;padding:15px;margin:15px 0;background:#0a0a0a}
-.song.new{border-color:#ffcc00}
-.song.most{border-color:red}
-.badge{font-size:11px;padding:3px 8px;border-radius:5px;font-weight:bold;margin-left:8px}
-.badge-new{background:gold;color:#000}
-.badge-most{background:red;color:#fff}
-.plays{color:#aaa;font-size:13px;margin:5px 0}
-audio{width:100%;margin:10px 0}
-.btn-dl{background:#ffcc00;color:#000;border:none;padding:10px 18px;border-radius:8px;font-weight:bold;cursor:pointer}
-.btn-like{background:#222;color:#fff;border:1px solid #555;padding:6px 14px;border-radius:20px;cursor:pointer;margin-top:10px}
-.btn-like.liked{background:red;border-color:red}
-.comment-row{display:flex;gap:6px;margin-top:12px}
-.comment-row input{flex:1;padding:9px 14px;border-radius:20px;border:none;background:#1a1a1a;color:#fff}
-.btn-post{background:gold;color:#000;border:none;padding:9px 15px;border-radius:20px;font-weight:bold;cursor:pointer}
-.comment-item{background:#1e1e1e;padding:8px 12px;border-radius:12px;margin-top:8px;text-align:left;font-size:14px}
-.comment-item b{color:gold}
-</style>
-</head>
-<body>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JN Music - Junior Ngoleka</title>  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-<div class="logo">JN</div>
-<div class="title">🔥 NEW RELEASED</div>
+    body {
+      background: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px 15px 40px;
+    }
 
-<!-- SONG 1 -->
-<div class="song new">
-<div><b>Chimayaka</b><span class="badge badge-new">NEW</span></div>
-<div class="plays">👁 1.2k plays • 3 days ago</div>
-<audio controls><source src=""></audio>
-<br><button class="btn-dl">Download MP3</button>
-<br><button class="btn-like" onclick="likeThis(this)">❤️ <span>0</span> Likes</button>
-<div class="comment-row"><input id="c1" placeholder="Add a comment..."><button class="btn-post" onclick="postThis('c1','l1')">Post</button></div>
+    .container {
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .logo {
+      width: 120px;
+      height: 120px;
+      margin: 10px auto 20px;
+      background: radial-gradient(circle, #222, #000);
+      border: 3px solid gold;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 50px;
+      font-weight: bold;
+      color: gold;
+      box-shadow: 0 0 25px rgba(255, 215, 0, .5);
+    }
+
+    .title {
+      color: gold;
+      text-align: center;
+      font-size: 26px;
+      font-weight: bold;
+      margin-bottom: 25px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #aaa;
+      margin-top: -15px;
+      margin-bottom: 25px;
+    }
+
+    .song {
+      border: 2px solid #444;
+      border-radius: 18px;
+      padding: 18px;
+      margin: 18px 0;
+      background: #0b0b0b;
+    }
+
+    .song.new {
+      border-color: #ffcc00;
+    }
+
+    .song.most {
+      border-color: red;
+      box-shadow: 0 0 12px rgba(255, 0, 0, .2);
+    }
+
+    .song-title {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .artist {
+      color: #ccc;
+      font-size: 13px;
+      margin-top: 5px;
+    }
+
+    .plays {
+      color: #999;
+      font-size: 13px;
+      margin: 8px 0;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 10px;
+      padding: 4px 8px;
+      border-radius: 5px;
+      font-weight: bold;
+      margin-left: 7px;
+      vertical-align: middle;
+    }
+
+    .badge-new {
+      background: gold;
+      color: #000;
+    }
+
+    .badge-most {
+      background: red;
+      color: #fff;
+    }
+
+    audio {
+      width: 100%;
+      margin: 12px 0;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn-dl {
+      display: inline-block;
+      background: #ffcc00;
+      color: #000;
+      text-decoration: none;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    .btn-like {
+      background: #222;
+      color: #fff;
+      border: 1px solid #555;
+      padding: 8px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
+    .btn-like.liked {
+      background: red;
+      border-color: red;
+    }
+
+    .comment-row {
+      display: flex;
+      gap: 7px;
+      margin-top: 14px;
+    }
+
+    .comment-row input {
+      flex: 1;
+      min-width: 0;
+      padding: 10px 14px;
+      border-radius: 20px;
+      border: 1px solid #333;
+      background: #171717;
+      color: #fff;
+      outline: none;
+    }
+
+    .btn-post {
+      background: gold;
+      color: #000;
+      border: none;
+      padding: 9px 16px;
+      border-radius: 20px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .comment-item {
+      background: #1b1b1b;
+      padding: 9px 12px;
+      border-radius: 12px;
+      margin-top: 8px;
+      font-size: 14px;
+    }
+
+    .comment-item b {
+      color: gold;
+    }
+
+    footer {
+      text-align: center;
+      color: gold;
+      margin-top: 35px;
+      font-size: 13px;
+    }
+  </style></head><body><div class="container">  <div class="logo">JN</div>  <div class="title">🔥 NEW RELEASED</div>  <div class="subtitle">
+    Junior Ngoleka • JN Music
+  </div>  <!-- SONG 1 -->  <div class="song new"><div class="song-title">
+  Chimayaka
+  <span class="badge badge-new">NEW</span>
+</div>
+
+<div class="plays">
+  👁 1.2k plays • 3 days ago
+</div>
+
+<audio controls preload="metadata">
+  <source src="/music/Chimayaka.mp3" type="audio/mpeg" />
+  Your browser does not support audio.
+</audio>
+
+<div class="buttons">
+  <a class="btn-dl" href="/music/Chimayaka.mp3" download>
+    ⬇ Download MP3
+  </a>
+
+  <button class="btn-like" onclick="likeThis(this)">
+    ❤️ <span>0</span> Likes
+  </button>
+</div>
+
+<div class="comment-row">
+  <input id="c1" placeholder="Add a comment..." />
+  <button class="btn-post" onclick="postThis('c1','l1')">
+    Post
+  </button>
+</div>
+
 <div id="l1"></div>
+
+  </div>  <!-- SONG 2 -->  <div class="song new"><div class="song-title">
+  Ndiwe Wokongola
+  <span class="badge badge-new">NEW</span>
 </div>
 
-<!-- SONG 2 -->
-<div class="song new">
-<div><b>Ndiwe Wokongola</b><span class="badge badge-new">NEW</span></div>
-<div class="plays">👁 2.5k plays • 1 week ago</div>
-<audio controls><source src=""></audio>
-<br><button class="btn-dl">Download MP3</button>
-<br><button class="btn-like" onclick="likeThis(this)">❤️ <span>0</span> Likes</button>
-<div class="comment-row"><input id="c2" placeholder="Add a comment..."><button class="btn-post" onclick="postThis('c2','l2')">Post</button></div>
+<div class="plays">
+  👁 2.5k plays • 1 week ago
+</div>
+
+<audio controls preload="metadata">
+  <source src="/music/Ndiwe-Wokongola.mp3" type="audio/mpeg" />
+  Your browser does not support audio.
+</audio>
+
+<div class="buttons">
+  <a class="btn-dl" href="/music/Ndiwe-Wokongola.mp3" download>
+    ⬇ Download MP3
+  </a>
+
+  <button class="btn-like" onclick="likeThis(this)">
+    ❤️ <span>0</span> Likes
+  </button>
+</div>
+
+<div class="comment-row">
+  <input id="c2" placeholder="Add a comment..." />
+  <button class="btn-post" onclick="postThis('c2','l2')">
+    Post
+  </button>
+</div>
+
 <div id="l2"></div>
+
+  </div>  <!-- SONG 3 -->  <div class="song"><div class="song-title">
+  Happy Birthday Barbra
 </div>
 
-<!-- SONG 3 -->
-<div class="song">
-<div><b>Happy Birthday Barbra</b></div>
-<div style="font-size:13px;color:#ccc">Apostle Martin - Junior Ngoleka</div>
-<div class="plays">👁 890 plays • 2 weeks ago</div>
-<audio controls><source src=""></audio>
-<br><button class="btn-dl">Download MP3</button>
-<br><button class="btn-like" onclick="likeThis(this)">❤️ <span>0</span> Likes</button>
-<div class="comment-row"><input id="c3" placeholder="Add a comment..."><button class="btn-post" onclick="postThis('c3','l3')">Post</button></div>
+<div class="artist">
+  Apostle Martin - Junior Ngoleka
+</div>
+
+<div class="plays">
+  👁 890 plays • 2 weeks ago
+</div>
+
+<audio controls preload="metadata">
+  <source src="/music/Happy-Birthday-Barbra.mp3" type="audio/mpeg" />
+  Your browser does not support audio.
+</audio>
+
+<div class="buttons">
+  <a class="btn-dl" href="/music/Happy-Birthday-Barbra.mp3" download>
+    ⬇ Download MP3
+  </a>
+
+  <button class="btn-like" onclick="likeThis(this)">
+    ❤️ <span>0</span> Likes
+  </button>
+</div>
+
+<div class="comment-row">
+  <input id="c3" placeholder="Add a comment..." />
+  <button class="btn-post" onclick="postThis('c3','l3')">
+    Post
+  </button>
+</div>
+
 <div id="l3"></div>
+
+  </div>  <!-- SONG 4 -->  <div class="song most"><div class="song-title">
+  Mwe Lesa
+  <span class="badge badge-most">MOST PLAYED</span>
 </div>
 
-<!-- SONG 4 -->
-<div class="song most">
-<div><b>Mwe Lesa</b><span class="badge badge-most">MOST PLAYED</span></div>
-<div class="plays">👁 15.3k plays • ❤️ 1.1k likes</div>
-<audio controls><source src=""></audio>
-<br><button class="btn-dl">Download MP3</button>
-<br><button class="btn-like" onclick="likeThis(this)">❤️ <span>1100</span> Likes</button>
-<div class="comment-row"><input id="c4" placeholder="Add a comment..."><button class="btn-post" onclick="postThis('c4','l4')">Post</button></div>
+<div class="plays">
+  👁 15.3k plays • ❤️ 1.1k likes
+</div>
+
+<audio controls preload="metadata">
+  <source src="/music/Mwe-Lesa.mp3" type="audio/mpeg" />
+  Your browser does not support audio.
+</audio>
+
+<div class="buttons">
+  <a class="btn-dl" href="/music/Mwe-Lesa.mp3" download>
+    ⬇ Download MP3
+  </a>
+
+  <button class="btn-like" onclick="likeThis(this)">
+    ❤️ <span>1100</span> Likes
+  </button>
+</div>
+
+<div class="comment-row">
+  <input id="c4" placeholder="Add a comment..." />
+  <button class="btn-post" onclick="postThis('c4','l4')">
+    Post
+  </button>
+</div>
+
 <div id="l4"></div>
+
+  </div>  <!-- SONG 5 -->  <div class="song"><div class="song-title">
+  Bow to You Alone
 </div>
 
-<!-- SONG 5 -->
-<div class="song">
-<div><b>Bow to You Alone</b></div>
-<div class="plays">👁 12.1k plays</div>
-<audio controls><source src=""></audio>
-<br><button class="btn-dl">Download MP3</button>
-<br><button class="btn-like" onclick="likeThis(this)">❤️ <span>0</span> Likes</button>
-<div class="comment-row"><input id="c5" placeholder="Add a comment..."><button class="btn-post" onclick="postThis('c5','l5')">Post</button></div>
+<div class="plays">
+  👁 12.1k plays
+</div>
+
+<audio controls preload="metadata">
+  <source src="/music/Bow-to-You-Alone.mp3" type="audio/mpeg" />
+  Your browser does not support audio.
+</audio>
+
+<div class="buttons">
+  <a class="btn-dl" href="/music/Bow-to-You-Alone.mp3" download>
+    ⬇ Download MP3
+  </a>
+
+  <button class="btn-like" onclick="likeThis(this)">
+    ❤️ <span>0</span> Likes
+  </button>
+</div>
+
+<div class="comment-row">
+  <input id="c5" placeholder="Add a comment..." />
+  <button class="btn-post" onclick="postThis('c5','l5')">
+    Post
+  </button>
+</div>
+
 <div id="l5"></div>
+
+  </div>  <!-- SONG 6 -->  <div class="song"><div class="song-title">
+  FMD
 </div>
 
-<!-- SONG 6 -->
-<div class="song">
-<div><b>FMD</b></div>
-<div class="plays">👁 9.4k plays</div>
-<audio controls><source src=""></audio>
-<br><button class="btn-dl">Download MP3</button>
-<br><button class="btn-like" onclick="likeThis(this)">❤️ <span>0</span> Likes</button>
-<div class="comment-row"><input id="c6" placeholder="Add a comment..."><button class="btn-post" onclick="postThis('c6','l6')">Post</button></div>
+<div class="plays">
+  👁 9.4k plays
+</div>
+
+<audio controls preload="metadata">
+  <source src="/music/FMD.mp3" type="audio/mpeg" />
+  Your browser does not support audio.
+</audio>
+
+<div class="buttons">
+  <a class="btn-dl" href="/music/FMD.mp3" download>
+    ⬇ Download MP3
+  </a>
+
+  <button class="btn-like" onclick="likeThis(this)">
+    ❤️ <span>0</span> Likes
+  </button>
+</div>
+
+<div class="comment-row">
+  <input id="c6" placeholder="Add a comment..." />
+  <button class="btn-post" onclick="postThis('c6','l6')">
+    Post
+  </button>
+</div>
+
 <div id="l6"></div>
+
+  </div>  <!-- SONG 7 -->  <div class="song"><div class="song-title">
+  Fire Mountain Welcome
 </div>
 
-<!-- SONG 7 -->
-<div class="song">
-<div><b>Fire Mountain Welcome</b></div>
-<!-- SONG 7 -->
-<div class="song">
-<div><b>Fire Mountain Welcome</b></div>
-<div class="plays">👁 7.2k plays</div>
-<audio controls><source src=""></audio>
-<br><button class="btn-dl">Download MP3</button>
-<br><button class="btn-like" onclick="likeThis(this)">❤️ <span>0</span> Likes</button>
-<div class="comment-row"><input id="c7" placeholder="Add a comment..."><button class="btn-post" onclick="postThis('c7','l7')">Post</button></div>
+<div class="plays">
+  👁 7.2k plays
+</div>
+
+<audio controls preload="metadata">
+  <source src="/music/Fire-Mountain-Welcome.mp3" type="audio/mpeg" />
+  Your browser does not support audio.
+</audio>
+
+<div class="buttons">
+  <a class="btn-dl" href="/music/Fire-Mountain-Welcome.mp3" download>
+    ⬇ Download MP3
+  </a>
+
+  <button class="btn-like" onclick="likeThis(this)">
+    ❤️ <span>0</span> Likes
+  </button>
+</div>
+
+<div class="comment-row">
+  <input id="c7" placeholder="Add a comment..." />
+  <button class="btn-post" onclick="postThis('c7','l7')">
+    Post
+  </button>
+</div>
+
 <div id="l7"></div>
-</div>
 
-<script>
-function likeThis(btn){
- let span=btn.querySelector('span');
- let n=parseInt(span.innerText)+1;
- span.innerText=n;
- btn.classList.add('liked');
-}
-function postThis(inputId,listId){
- let input=document.getElementById(inputId);
- let list=document.getElementById(listId);
- if(!input.value.trim()) return;
- let div=document.createElement('div');
- div.className='comment-item';
- div.style.cssText='background:#1e1e1e;padding:8px 12px;border-radius:12px;margin-top:8px;font-size:14px';
- div.innerHTML='<b style="color:gold">You:</b> '+input.value;
- list.prepend(div);
- input.value='';
-}
-</script>
+  </div>  <footer>
+    © 2026 Prophet Junior Ngoleka - Zambia
+  </footer></div><script>
 
-<p style="text-align:center;color:gold;margin-top:30px">© 2026 Prophet Junior Ngoleka - Kitwe, Zambia</p>
-</body>
+function likeThis(btn) {
+
+  const span = btn.querySelector("span");
+
+  let number = parseInt(span.innerText) || 0;
+
+  number++;
+
+  span.innerText = number;
+
+  btn.classList.add("liked");
+}
+
+
+function postThis(inputId, listId) {
+
+  const input = document.getElementById(inputId);
+
+  const list = document.getElementById(listId);
+
+  const comment = input.value.trim();
+
+  if (!comment) return;
+
+  const div = document.createElement("div");
+
+  div.className = "comment-item";
+
+  const name = document.createElement("b");
+
+  name.textContent = "You: ";
+
+  div.appendChild(name);
+
+  div.appendChild(
+    document.createTextNode(comment)
+  );
+
+  list.prepend(div);
+
+  input.value = "";
+}
+
+</script></body>
 </html>
